@@ -1,0 +1,17 @@
+{
+  "name": "practica-skate-park",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "--watch node index.js"
+  },
+  "keywords": [],
+  "author": "MacarenaCavieres",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
