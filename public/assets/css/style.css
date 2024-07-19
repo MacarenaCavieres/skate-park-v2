@@ -28,7 +28,10 @@ h1 {
 
 .home__table th,
 .home__table td,
-.home__table tr {
+.home__table tr,
+.admin__table th,
+.admin__table td,
+.admin__table tr {
     background-color: var(--color-tertiary);
     color: var(--color-primary);
 }
@@ -50,6 +53,27 @@ td div {
     background-size: cover;
     width: 30px;
     height: 60px;
+}
+
+.register__btn,
+.login__btn,
+.data__btn-update,
+.data__btn-delete {
+    background-color: var(--color-quaternary);
+}
+.register__btn:hover,
+.login__btn:hover {
+    background-color: var(--color-tertiary);
+    color: var(--color-primary);
+}
+
+.data__btn-update:hover {
+    background-color: #071952;
+    color: var(--color-tertiary);
+}
+.data__btn-delete:hover {
+    background-color: #ff0000;
+    color: var(--color-tertiary);
 }
 
 tbody tr:nth-child(1) td div {
