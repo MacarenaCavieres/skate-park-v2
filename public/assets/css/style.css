@@ -5,25 +5,41 @@
     --color-quaternary: #f8b400;
 }
 
+.navbar {
+    background-color: var(--color-quaternary);
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--color-primary);
+}
+
 body {
     background: var(--color-primary);
     color: var(--color-quaternary);
     /* text-shadow: 0px 0px 1px black; */
     font-family: sans-serif;
     text-align: center;
-    padding: 40px 100px;
 }
 
 h1 {
     font-style: italic;
 }
 
-.home__table {
+.home__table th,
+.home__table td,
+.home__table tr {
     background-color: var(--color-tertiary);
     color: var(--color-primary);
 }
 a {
     color: var(--color-quaternary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-secondary);
+    text-decoration: none;
 }
 
 td,
@@ -32,20 +48,20 @@ th {
 }
 td div {
     background-size: cover;
-    width: 60px;
+    width: 30px;
     height: 60px;
 }
 
 tbody tr:nth-child(1) td div {
-    background-image: url("/tony.jpg");
+    background-image: url("/assets/imgs/tony.jpg");
 }
 
 tbody tr:nth-child(2) td div {
-    background-image: url("/Evelien.jpg");
+    background-image: url("/assets/imgs/Evelien.jpg");
 }
 
 tbody tr:nth-child(3) td div {
-    background-image: url("/Danny.jpg");
+    background-image: url("/assets/imgs/Danny.jpg");
 }
 
 input {
