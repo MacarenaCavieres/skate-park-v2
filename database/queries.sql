@@ -8,6 +8,6 @@ CREATE TABLE skaters (
     years_experience INT NOT NULL, 
 	specialty VARCHAR(50) NOT NULL, 
     photo VARCHAR(255) NOT NULL, 
-    state BOOLEAN NOT NULL,
+    state BOOLEAN default false,
 	type_user INT default 2
 );

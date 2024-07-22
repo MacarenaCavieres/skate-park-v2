@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { skatersController } from "../controllers/skaters.controller.js";
 
 const router = Router();
 
@@ -8,6 +9,9 @@ router.get("/", (req, res) => {
 router.get("/register", (req, res) => {
     res.render("register");
 });
+
+router.post("/register/skater", skatersController.postOneSkater);
+
 router.get("/login", (req, res) => {
     res.render("login");
 });

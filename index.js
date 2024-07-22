@@ -1,7 +1,8 @@
 import express from "express";
 import routerViews from "./routes/views.route.js";
-import { engine } from "express-handlebars";
 import path from "path";
+import fileConfig from "./utils/config.util.js";
+import { engine } from "express-handlebars";
 
 const app = express();
 
@@ -11,7 +12,9 @@ app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname + "/views"));
 
+// app.use(express.static(path.join(__dirname, "/imgs")));
 app.use(express.static("public"));
+app.use(fileConfig);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
