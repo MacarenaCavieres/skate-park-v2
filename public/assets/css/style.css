@@ -76,7 +76,9 @@ td div {
     color: var(--color-tertiary);
 }
 
-tbody tr:nth-child(1) td div {
+/* C:\Users\makac\OneDrive\Documentos\Mis documentos\Jovenes Programadores\desafiolatam\M8\03-JWT\dia-11\practica-skate-park\public\assets\imgs */
+
+/* tbody tr:nth-child(1) td div {
     background-image: url("/assets/imgs/tony.jpg");
 }
 
@@ -86,7 +88,7 @@ tbody tr:nth-child(2) td div {
 
 tbody tr:nth-child(3) td div {
     background-image: url("/assets/imgs/Danny.jpg");
-}
+} */
 
 input {
     text-align: center;
