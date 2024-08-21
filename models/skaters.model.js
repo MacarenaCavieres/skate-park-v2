@@ -1,4 +1,4 @@
-import { pool } from "./database/connection.db.js";
+import { pool } from "../database/connection.db.js";
 
 const postOne = async (email, nombre, password, years_experience, specialty, photo) => {
     const query = {
@@ -6,7 +6,7 @@ const postOne = async (email, nombre, password, years_experience, specialty, pho
         values: [email, nombre, password, years_experience, specialty, photo],
     };
     const { rows } = await pool.query(query);
-    return rows;
+    return rows[0];
 };
 
 const getAll = async () => {
