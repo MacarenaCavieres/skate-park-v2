@@ -1,4 +1,4 @@
-// import { Skater } from "../models/skaters.model.js";
+import { Skater } from "../models/skaters.model.js";
 import { handleErrors } from "../database/errors.db.js";
 import path from "path";
 
@@ -22,7 +22,8 @@ const postOneSkater = async (req, res) => {
             }
         });
 
-        // const data = await Skater.postOne(email, name, password, years_experience, specialty, photo);
+        const data = await Skater.postOne(email, name, password, years_experience, specialty, name);
+        return res.redirect("regSuccess");
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
