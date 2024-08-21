@@ -1,4 +1,4 @@
-drop table if exists skatepark;
+drop table if exists skaters;
 
 CREATE TABLE skaters (
     id SERIAL, 
