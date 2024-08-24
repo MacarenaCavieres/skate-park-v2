@@ -18,7 +18,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+
+                    {{#if data}}
+
+                        {{#each data}}
+                            <tr>
+                                <th scope="row">{{id}}</th>
+                                <td class="home__td-img"><img
+                                        src="/assets/imgs/{{photo}}"
+                                        alt="{{nombre}}"
+                                        class="home__img"
+                                    /></td>
+                                <td>{{nombre}}</td>
+                                <td>{{years_experience}}</td>
+                                <td>{{specialty}}</td>
+                                <td class="text-success font-weight-bold">{{state}}</td>
+                            </tr>
+
+                        {{/each}}
+                    {{/if}}
+
+                    {{! <tr>
                         <th scope="row">1</th>
                         <td><div></div></td>
                         <td>Tony Hawk</td>
@@ -41,7 +61,7 @@
                         <td>8</td>
                         <td>Ollie</td>
                         <td class="text-warning font-weight-bold">En revisión</td>
-                    </tr>
+                    </tr> }}
                 </tbody>
             </table>
         </div>
