@@ -76,19 +76,13 @@ td div {
     color: var(--color-tertiary);
 }
 
-/* C:\Users\makac\OneDrive\Documentos\Mis documentos\Jovenes Programadores\desafiolatam\M8\03-JWT\dia-11\practica-skate-park\public\assets\imgs */
-
-/* tbody tr:nth-child(1) td div {
-    background-image: url("/assets/imgs/tony.jpg");
+.home__td-img {
+    width: 200px;
 }
 
-tbody tr:nth-child(2) td div {
-    background-image: url("/assets/imgs/Evelien.jpg");
+.home__img {
+    width: 50%;
 }
-
-tbody tr:nth-child(3) td div {
-    background-image: url("/assets/imgs/Danny.jpg");
-} */
 
 input {
     text-align: center;
