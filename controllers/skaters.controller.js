@@ -29,7 +29,8 @@ const postOneSkater = async (req, res) => {
         const hashPassword = await bcryptjs.hash(password, salt);
 
         const data = await Skater.postOne(email, nombre, hashPassword, years_experience, specialty, name);
-        return res.render("regSuccessful", { data });
+        res.render("regSuccessful", { data });
+        res.status(200).json({ ok: true });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
@@ -49,7 +50,22 @@ const getAllSkaters = async (req, res) => {
     }
 };
 
+const getOneSkater = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const data = await Skater.getOne(email);
+        console.log(data);
+        return res.send("ok");
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
 export const skatersController = {
     postOneSkater,
     getAllSkaters,
+    getOneSkater,
 };
