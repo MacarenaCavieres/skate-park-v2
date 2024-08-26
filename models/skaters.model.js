@@ -14,7 +14,7 @@ const getAll = async () => {
     return rows;
 };
 
-const getOne = async (email) => {
+const findOne = async (email) => {
     const query = {
         text: "select * from skaters where email = $1",
         values: [email],
@@ -27,5 +27,5 @@ const getOne = async (email) => {
 export const Skater = {
     postOne,
     getAll,
-    getOne,
+    findOne,
 };

@@ -6,6 +6,7 @@
     <hr />
     <section class="container">
         <div class="table-responsive">
+            {{#if data}}
             <table class="table table-hover home__table">
                 <thead>
                     <tr>
@@ -19,29 +20,27 @@
                 </thead>
                 <tbody>
 
-                    {{#if data}}
+                    {{#each data}}
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td class="home__td-img"><img
+                                    src="/assets/imgs/{{photo}}"
+                                    alt="{{nombre}}"
+                                    class="home__img"
+                                /></td>
+                            <td>{{nombre}}</td>
+                            <td>{{years_experience}}</td>
+                            <td>{{specialty}}</td>
+                            {{#if state}}
+                                <td class="text-success font-weight-bold">Aprobado</td>
+                            {{else}}
+                                <td class="text-warning-emphasis font-weight-bold">En revisión</td>
+                            {{/if}}
+                        </tr>
 
-                        {{#each data}}
-                            <tr>
-                                <th scope="row">{{id}}</th>
-                                <td class="home__td-img"><img
-                                        src="/assets/imgs/{{photo}}"
-                                        alt="{{nombre}}"
-                                        class="home__img"
-                                    /></td>
-                                <td>{{nombre}}</td>
-                                <td>{{years_experience}}</td>
-                                <td>{{specialty}}</td>
-                                {{#if state}}
-                                    <td class="text-success font-weight-bold">Aprobado</td>
-                                {{else}}
-                                    <td class="text-warning-emphasis font-weight-bold">En revisión</td>
-                                {{/if}}
-                            </tr>
-
-                        {{/each}}
-                    {{/if}}
+                    {{/each}}
                 </tbody>
+            {{/if}}
             </table>
         </div>
     </section>

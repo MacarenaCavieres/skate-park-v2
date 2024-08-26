@@ -1,5 +1,6 @@
 import bcryptjs from "bcryptjs";
 import path from "path";
+import { generateToken } from "../utils/config.util.js";
 import { Skater } from "../models/skaters.model.js";
 import { handleErrors } from "../database/errors.db.js";
 
@@ -16,7 +17,6 @@ const postOneSkater = async (req, res) => {
     if (password !== rePassword) return res.status(400).json({ ok: false, msg: "Contraseñas no coinciden" });
 
     const name = `${nombre.split(" ").join("")}.jpg`;
-    // const profileFoto = `${name}`;
 
     try {
         photo.mv(path.join(pathFile, name), (err) => {
@@ -29,6 +29,7 @@ const postOneSkater = async (req, res) => {
         const hashPassword = await bcryptjs.hash(password, salt);
 
         const data = await Skater.postOne(email, nombre, hashPassword, years_experience, specialty, name);
+
         return res.render("regSuccessful", { data });
     } catch (error) {
         console.log(error);
@@ -49,13 +50,21 @@ const getAllSkaters = async (req, res) => {
     }
 };
 
-const getOneSkater = async (req, res) => {
+const findOneSkater = async (req, res) => {
     const { email, password } = req.body;
 
+    if (!email || !password) return res.status(409).json({ ok: false, msg: "Faltan campos" });
+
     try {
-        const data = await Skater.getOne(email);
-        console.log(data);
-        return res.send("ok");
+        const data = await Skater.findOne(email);
+        if (!data) return res.status(409).json({ ok: false, msg: "Usuario no encontrado" });
+
+        const match = await bcryptjs.compare(password, data.password);
+        if (!match) return res.status(400).json({ ok: false, msg: "Usuario o contraseña incorrecto" });
+
+        const token = generateToken(data.email);
+
+        return res.header("Authorization", token).render("data");
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
@@ -66,5 +75,5 @@ const getOneSkater = async (req, res) => {
 export const skatersController = {
     postOneSkater,
     getAllSkaters,
-    getOneSkater,
+    findOneSkater,
 };

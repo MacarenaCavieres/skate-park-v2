@@ -1,4 +1,5 @@
 const formRegister = document.querySelector("#formRegister");
+const formLogin = document.querySelector("#formLogin");
 
 if (formRegister) {
     formRegister.addEventListener("submit", async () => {
@@ -24,3 +25,14 @@ if (formRegister) {
         if (password !== rePassword) return alert("Contraseñas no coinciden");
     });
 }
+
+// if (formLogin) {
+//     formLogin.addEventListener("submit", async () => {
+//         try {
+//             const data = await axios.get("/data");
+//             console.log(data);
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     });
+// }

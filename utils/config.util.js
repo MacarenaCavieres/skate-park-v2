@@ -1,3 +1,5 @@
+import "dotenv/config";
+import jwt from "jsonwebtoken";
 import fileUpload from "express-fileupload";
 
 const fileConfig = fileUpload({
@@ -5,4 +7,11 @@ const fileConfig = fileUpload({
     abortOnLimit: true,
     responseOnLimit: "El peso del archivo es superior al limite permitido",
 });
+
+const secretKey = process.env.secretKey;
+
+export const generateToken = (email) => {
+    return jwt.sign({ email }, secretKey, { expiresIn: "1h" });
+};
+
 export default fileConfig;
