@@ -49,6 +49,7 @@ td,
 th {
     vertical-align: middle !important;
 }
+
 td div {
     background-size: cover;
     width: 60px;
@@ -82,6 +83,7 @@ td div {
 
 .home__img {
     width: 50%;
+    height: auto;
 }
 
 input {
