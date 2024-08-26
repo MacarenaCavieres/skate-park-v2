@@ -14,7 +14,18 @@ const getAll = async () => {
     return rows;
 };
 
+const getOne = async (email) => {
+    const query = {
+        text: "select * from skaters where email = $1",
+        values: [email],
+    };
+
+    const { rows } = await pool.query(query);
+    return rows[0];
+};
+
 export const Skater = {
     postOne,
     getAll,
+    getOne,
 };
