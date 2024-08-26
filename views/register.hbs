@@ -3,36 +3,37 @@
 <div class="py-4">
     <h2>Registro</h2>
     <hr class="w-100" />
+    {{! method="POST" action="/register/skater" enctype="multipart/form-data" }}
 
-    <form method="POST" action="/register/skater" enctype="multipart/form-data">
+    <form id="formRegister">
         <div class="form-group row w-50 m-auto">
             <div class="form-group col-12 col-sm-6 my-3">
                 <label for="email">Email</label>
-                <input class="form-control m-auto" type="email" name="email" />
+                <input class="form-control m-auto" type="email" name="email" required />
             </div>
             <div class="form-group col-12 col-sm-6 my-3">
                 <label for="nombre">Nombre</label>
-                <input class="form-control m-auto" type="text" name="nombre" />
+                <input class="form-control m-auto" type="text" name="nombre" required />
             </div>
             <div class="form-group col-12 col-sm-6 my-3">
                 <label for="password">Contraseña</label>
-                <input class="form-control m-auto" type="password" name="password" />
+                <input class="form-control m-auto" type="password" name="password" required />
             </div>
             <div class="form-group col-12 col-sm-6 my-3">
                 <label>Repita la contraseña</label>
-                <input class="form-control m-auto" type="password" name="rePassword" />
+                <input class="form-control m-auto" type="password" name="rePassword" required />
             </div>
             <div class="form-group col-12 col-sm-6 my-3">
                 <label>Años de experiencia</label>
-                <input class="form-control m-auto" type="number" name="years_experience" />
+                <input class="form-control m-auto" type="number" name="years_experience" required />
             </div>
             <div class="form-group col-12 col-sm-6 my-3">
                 <label for="specialty">Especialidad</label>
-                <input class="form-control m-auto" type="text" name="specialty" />
+                <input class="form-control m-auto" type="text" name="specialty" required />
             </div>
             <div class="form-group col-12 col-sm-12 my-3">
                 <label for="photo">Foto de perfil</label>
-                <input type="file" name="photo" />
+                <input type="file" name="photo" id="fileInput" required />
             </div>
         </div>
         <button class="btn register__btn mb-3">Registrarme</button>
