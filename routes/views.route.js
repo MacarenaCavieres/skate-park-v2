@@ -11,10 +11,6 @@ router.get("/register", (req, res) => {
 
 router.post("/register/skater", skatersController.postOneSkater);
 
-// router.get("/register/success", (req, res) => {
-//     res.render("regSuccessful");
-// });
-
 router.get("/login", (req, res) => {
     res.render("login");
 });

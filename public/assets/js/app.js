@@ -1,33 +1,26 @@
 const formRegister = document.querySelector("#formRegister");
 
 if (formRegister) {
-    formRegister.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    formRegister.addEventListener("submit", async () => {
+        const email = formRegister.email.value;
+        const nombre = formRegister.nombre.value;
+        const password = formRegister.password.value;
+        const rePassword = formRegister.rePassword.value;
+        const years_experience = formRegister.years_experience.value;
+        const specialty = formRegister.specialty.value;
+        const photo = formRegister.photo.files[0];
 
-        try {
-            const { data } = await axios.post(
-                "/register/skater",
-                {
-                    email: formRegister.email.value,
-                    nombre: formRegister.nombre.value,
-                    password: formRegister.password.value,
-                    rePassword: formRegister.rePassword.value,
-                    years_experience: formRegister.years_experience.value,
-                    specialty: formRegister.specialty.value,
-                    photo: formRegister.photo.files[0],
-                },
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+        if (
+            !password.trim() ||
+            !rePassword.trim() ||
+            !email.trim() ||
+            !nombre.trim() ||
+            !years_experience.trim() ||
+            !specialty.trim() ||
+            !photo
+        )
+            return alert("Debe completar todos los datos");
 
-            if (data.ok) {
-                window.location.href = "/register/success";
-            }
-        } catch (error) {
-            console.log("error =====> ", error);
-        }
+        if (password !== rePassword) return alert("Contraseñas no coinciden");
     });
 }

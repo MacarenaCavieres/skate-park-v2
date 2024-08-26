@@ -29,8 +29,7 @@ const postOneSkater = async (req, res) => {
         const hashPassword = await bcryptjs.hash(password, salt);
 
         const data = await Skater.postOne(email, nombre, hashPassword, years_experience, specialty, name);
-        res.render("regSuccessful", { data });
-        res.status(200).json({ ok: true });
+        return res.render("regSuccessful", { data });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
