@@ -66,13 +66,13 @@ const findOneSkater = async (req, res) => {
         const match = await bcryptjs.compare(password, data.password);
         if (!match) return res.status(400).json({ ok: false, msg: "Usuario o contraseña incorrecto" });
 
-        const token = generateToken(data.email);
+        const token = generateToken(data.email, data.type_user);
 
-        return res.header("authorization", token).json({
+        return res.json({
             ok: true,
             msg: "Usuario logeado con éxito",
             token,
-            href: `http://localhost:3000/data?token=${token}`,
+            tipo_usuario: data.type_user,
         });
     } catch (error) {
         console.log(error);
@@ -84,7 +84,7 @@ const findOneSkater = async (req, res) => {
 const getDataSkater = async (req, res) => {
     try {
         const data = await Skater.findOne(req.email);
-        console.log(data);
+        res.send(data);
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
