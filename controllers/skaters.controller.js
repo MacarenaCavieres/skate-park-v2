@@ -19,6 +19,10 @@ const postOneSkater = async (req, res) => {
     const name = `${nombre.split(" ").join("")}.jpg`;
 
     try {
+        const skater = await Skater.findOne(email);
+
+        if (skater) return res.status(400).json({ ok: false, msg: "Usuario ya existe" });
+
         photo.mv(path.join(pathFile, name), (err) => {
             if (err) {
                 return res.status(500).json({ ok: false, msg: "Error de servidor" });
@@ -30,7 +34,7 @@ const postOneSkater = async (req, res) => {
 
         const data = await Skater.postOne(email, nombre, hashPassword, years_experience, specialty, name);
 
-        return res.render("regSuccessful", { data });
+        return res.status(201).render("regSuccessful", { data });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
@@ -64,7 +68,23 @@ const findOneSkater = async (req, res) => {
 
         const token = generateToken(data.email);
 
-        return res.header("Authorization", token).render("data");
+        return res.header("authorization", token).json({
+            ok: true,
+            msg: "Usuario logeado con éxito",
+            token,
+            href: `http://localhost:3000/data?token=${token}`,
+        });
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
+const getDataSkater = async (req, res) => {
+    try {
+        const data = await Skater.findOne(req.email);
+        console.log(data);
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
@@ -76,4 +96,5 @@ export const skatersController = {
     postOneSkater,
     getAllSkaters,
     findOneSkater,
+    getDataSkater,
 };

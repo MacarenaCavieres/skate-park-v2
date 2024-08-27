@@ -4,8 +4,8 @@ import jwt from "jsonwebtoken";
 const secretKey = process.env.SK;
 
 export const validateToken = (req, res, next) => {
-    const header = req.header("Authorization") || "";
-    const token = header.split(" ")[1];
+    console.log(req.headers);
+    const token = req.headers["authorization"] || req.query.token;
 
     if (!token) return res.status(401).json({ ok: false, msg: "Acceso denegado" });
 
@@ -13,6 +13,7 @@ export const validateToken = (req, res, next) => {
         if (err) {
             res.status(401).json({ ok: false, msg: "Acceso denegado, token expirado o incorrecto" });
         } else {
+            req.email = user.email;
             next();
         }
     });

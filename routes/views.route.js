@@ -18,9 +18,7 @@ router.get("/login", (req, res) => {
 
 router.post("/check", skatersController.findOneSkater);
 
-router.get("/data", validateToken, (req, res) => {
-    res.render("data");
-});
+router.get("/data", validateToken, skatersController.getDataSkater);
 
 router.get("/admin", (req, res) => {
     res.render("admin");
