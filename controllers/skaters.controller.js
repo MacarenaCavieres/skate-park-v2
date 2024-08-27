@@ -84,7 +84,7 @@ const findOneSkater = async (req, res) => {
 const getDataSkater = async (req, res) => {
     try {
         const data = await Skater.findOne(req.email);
-        res.send(data);
+        return res.render("data", { data });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);

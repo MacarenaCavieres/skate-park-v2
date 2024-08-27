@@ -5,9 +5,10 @@ const secretKey = process.env.secretKey;
 
 export const validateToken = (req, res, next) => {
     let token = req.headers.authorization;
-    console.log(req.tipo_usuario);
 
-    if (!token) return res.status(401).json({ ok: false, msg: "Acceso denegado" });
+    if (!token) {
+        return res.status(401).json({ ok: false, msg: "Acceso denegado" });
+    }
 
     token = token.split(" ")[1];
 
@@ -15,10 +16,10 @@ export const validateToken = (req, res, next) => {
         const { email, type_user } = jwt.verify(token, secretKey);
 
         req.email = email;
-        req.tipo_usuario = type_user;
+        req.type_user = type_user;
         next();
     } catch (error) {
-        console.error(error);
+        console.error("Error en la verificación del token:", error);
         return res.status(400).json({ ok: false, msg: "Token no válido" });
     }
 };

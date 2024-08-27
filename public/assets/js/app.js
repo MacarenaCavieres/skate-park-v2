@@ -1,5 +1,6 @@
 const formRegister = document.querySelector("#formRegister");
 const formLogin = document.querySelector("#formLogin");
+// const token = localStorage.getItem("token");
 // import { verifyToken } from "./data.js";
 
 if (formRegister) {
@@ -27,44 +28,37 @@ if (formRegister) {
     });
 }
 
-if (formLogin) {
-    formLogin.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const email = formLogin.email.value;
-        const password = formLogin.password.value;
+formLogin.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = formLogin.email.value;
+    const password = formLogin.password.value;
 
-        try {
-            const { data } = await axios.post("/check", {
-                email,
-                password,
-            });
-            if (data) {
-                localStorage.setItem("token", data.token);
-                window.location.href = "/data";
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    });
-}
-
-const token = localStorage.getItem("token");
-
-// if (!token) {
-//     return (window.location.href = "/login");
-// }
-
-const getProfile = async () => {
     try {
-        const { data } = await axios.get("/data", {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+        const { data } = await axios.post("/check", {
+            email,
+            password,
         });
-        console.log(data);
-    } catch (error) {
-        console.error(error);
-    }
-};
 
-getProfile();
+        localStorage.setItem("token", data.token);
+
+        window.location.href = "/data";
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+// const token = localStorage.getItem("token");
+
+// const getProfile = async () => {
+//     try {
+//         const { data } = await axios.get("/data", {
+//             headers: {
+//                 Authorization: `Bearer ${token}`,
+//             },
+//         });
+//     } catch (error) {
+//         console.error("Error al obtener el perfil:", error);
+//     }
+// };
+
+// getProfile();

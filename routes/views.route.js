@@ -15,9 +15,7 @@ router.post("/register/skater", skatersController.postOneSkater);
 router.get("/login", (req, res) => {
     res.render("login");
 });
-
 router.post("/check", skatersController.findOneSkater);
-
 router.get("/data", validateToken, skatersController.getDataSkater);
 
 router.get("/admin", (req, res) => {
