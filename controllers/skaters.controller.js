@@ -1,13 +1,27 @@
 import bcryptjs from "bcryptjs";
 import path from "path";
-import { generateToken } from "../utils/config.util.js";
+import jwt from "jsonwebtoken";
+// import { generateToken } from "../utils/config.util.js";
 import { Skater } from "../models/skaters.model.js";
 import { handleErrors } from "../database/errors.db.js";
 
 const __dirname = import.meta.dirname;
 const pathFile = path.join(__dirname, "../public/assets/imgs");
+const secretKey = process.env.secretKey;
 
-const postOneSkater = async (req, res) => {
+const getAllSkaters = async (req, res) => {
+    try {
+        const data = await Skater.getAll();
+
+        res.render("home", { data });
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
+const register = async (req, res) => {
     const { email, nombre, password, rePassword, years_experience, specialty } = req.body;
     const { photo } = req.files;
 
@@ -52,18 +66,6 @@ const postOneSkater = async (req, res) => {
     }
 };
 
-const getAllSkaters = async (req, res) => {
-    try {
-        const data = await Skater.getAll();
-
-        res.render("home", { data });
-    } catch (error) {
-        console.log(error);
-        const { code, msg } = handleErrors(error);
-        return res.status(code).json({ ok: false, msg });
-    }
-};
-
 const postLogin = async (req, res) => {
     const { email, password } = req.body;
 
@@ -76,7 +78,16 @@ const postLogin = async (req, res) => {
         const match = await bcryptjs.compare(password, data.password);
         if (!match) return res.status(400).json({ ok: false, msg: "Usuario o contraseña incorrecto" });
 
-        const token = generateToken(data.email, data.type_user);
+        const token = jwt.sign(
+            {
+                email: data.email,
+                type_user: data.type_user,
+            },
+            secretKey,
+            {
+                expiresIn: "1h",
+            }
+        );
 
         return res.json({
             ok: true,
@@ -94,7 +105,6 @@ const postLogin = async (req, res) => {
 const getDataSkater = async (req, res) => {
     try {
         const data = await Skater.findOne(req.email);
-        console.log(data);
         return res.json({ ok: true, data });
     } catch (error) {
         console.log(error);
@@ -104,7 +114,7 @@ const getDataSkater = async (req, res) => {
 };
 
 export const skatersController = {
-    postOneSkater,
+    register,
     getAllSkaters,
     postLogin,
     getDataSkater,
