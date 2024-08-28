@@ -24,8 +24,29 @@ const findOne = async (email) => {
     return rows[0];
 };
 
+const putOne = async (email, nombre, password, years_experience, specialty) => {
+    const query = {
+        text: "update skaters set nombre = $2, password = $3, years_experience = $4, specialty = $5 where email = $1 returning *",
+        values: [email, nombre, password, years_experience, specialty],
+    };
+    const { rows } = await pool.query(query);
+    return rows[0];
+};
+
+const deleteOne = async (id) => {
+    const query = {
+        text: "delete from skaters where id = $1 returning *",
+        values: [id],
+    };
+
+    const { rows } = await pool.query(query);
+    return rows[0];
+};
+
 export const Skater = {
     postOne,
     getAll,
     findOne,
+    putOne,
+    deleteOne,
 };

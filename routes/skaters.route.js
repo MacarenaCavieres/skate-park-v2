@@ -7,6 +7,7 @@ const router = Router();
 router.post("/register/skater", skatersController.register);
 router.post("/login", skatersController.postLogin);
 router.get("/data", validateToken, skatersController.getDataSkater);
-// router.get("/proyecto", verifyToken, Usercontrollers.profile);
+router.put("/skater/update", skatersController.putOneSkater);
+router.delete("/skater/delete", skatersController.deleteOneSkater);
 
 export default router;
