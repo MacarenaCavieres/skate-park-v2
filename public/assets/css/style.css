@@ -59,11 +59,13 @@ td div {
 .register__btn,
 .login__btn,
 .data__btn-update,
-.data__btn-delete {
+.data__btn-delete,
+.data__btn-logout {
     background-color: var(--color-quaternary);
 }
 .register__btn:hover,
-.login__btn:hover {
+.login__btn:hover,
+.data__btn-logout:hover {
     background-color: var(--color-tertiary);
     color: var(--color-primary);
 }

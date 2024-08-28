@@ -4,7 +4,7 @@
     <h2>Registro</h2>
     <hr class="w-100" />
 
-    <form enctype="multipart/form-data" id="formRegister">
+    <form method="POST" action="/users/register/skater" enctype="multipart/form-data" id="formRegister">
         <div class="form-group row w-50 m-auto">
             <div class="form-group col-12 col-sm-6 my-3">
                 <label for="email">Email</label>
@@ -35,7 +35,7 @@
                 <input type="file" name="photo" required />
             </div>
         </div>
-        <button class="btn register__btn mb-3" type="submit">Registrarme</button>
+        <button class="btn register__btn mb-3">Registrarme</button>
         <p><a href="/login"> Iniciar sesión</a></p>
     </form>
 </div>

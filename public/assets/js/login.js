@@ -11,12 +11,10 @@ formLogin.addEventListener("submit", async (e) => {
             password,
         });
 
-        console.log(data);
-
         localStorage.setItem("token", data.token);
-
         window.location.href = "/data";
     } catch (error) {
         console.log(error);
+        return alert(error.response.data.msg);
     }
 });

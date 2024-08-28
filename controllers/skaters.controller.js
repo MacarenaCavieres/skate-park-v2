@@ -12,7 +12,6 @@ const secretKey = process.env.secretKey;
 const getAllSkaters = async (req, res) => {
     try {
         const data = await Skater.getAll();
-
         res.render("home", { data });
     } catch (error) {
         console.log(error);
@@ -48,17 +47,13 @@ const register = async (req, res) => {
 
         const data = await Skater.postOne(email, nombre, hashPassword, years_experience, specialty, name);
 
-        const token = generateToken(data.email, data.type_user);
-
-        return res.status(201).json({
-            ok: true,
-            asviso: "Usuario creado con éxito",
-            data,
-            msg: {
-                token,
-                tipo_usuario: data.type_user,
-            },
-        });
+        // return res.status(201).json({
+        //     ok: true,
+        //     asviso: "Usuario creado con éxito",
+        //     data,
+        // });
+        console.log(data);
+        return res.render("regSuccessful", { data });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);

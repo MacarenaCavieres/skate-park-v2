@@ -10,15 +10,11 @@ router.get("/register", (req, res) => {
     res.render("register");
 });
 
-router.get("/register/success", (req, res) => {
-    res.render("regSuccessful");
-});
-
 router.get("/login", (req, res) => {
     res.render("login");
 });
 
-router.post("/login", skatersController.postLogin);
+// router.post("/login", skatersController.postLogin);
 
 router.get("/data", (req, res) => {
     res.render("data");
