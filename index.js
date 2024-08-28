@@ -1,5 +1,6 @@
 import express from "express";
 import routerViews from "./routes/views.route.js";
+import routerSkater from "./routes/skaters.route.js";
 import path from "path";
 import fileConfig from "./utils/config.util.js";
 import { engine } from "express-handlebars";
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", routerViews);
+app.use("/users", routerSkater);
 
 const PORT = 3000;
 app.listen(PORT, () => {

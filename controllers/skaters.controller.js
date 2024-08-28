@@ -34,7 +34,17 @@ const postOneSkater = async (req, res) => {
 
         const data = await Skater.postOne(email, nombre, hashPassword, years_experience, specialty, name);
 
-        return res.status(201).render("regSuccessful", { data });
+        const token = generateToken(data.email, data.type_user);
+
+        return res.status(201).json({
+            ok: true,
+            asviso: "Usuario creado con éxito",
+            data,
+            msg: {
+                token,
+                tipo_usuario: data.type_user,
+            },
+        });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
@@ -54,7 +64,7 @@ const getAllSkaters = async (req, res) => {
     }
 };
 
-const findOneSkater = async (req, res) => {
+const postLogin = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) return res.status(409).json({ ok: false, msg: "Faltan campos" });
@@ -84,7 +94,8 @@ const findOneSkater = async (req, res) => {
 const getDataSkater = async (req, res) => {
     try {
         const data = await Skater.findOne(req.email);
-        return res.render("data", { data });
+        console.log(data);
+        return res.json({ ok: true, data });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
@@ -95,6 +106,6 @@ const getDataSkater = async (req, res) => {
 export const skatersController = {
     postOneSkater,
     getAllSkaters,
-    findOneSkater,
+    postLogin,
     getDataSkater,
 };

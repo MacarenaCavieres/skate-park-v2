@@ -5,9 +5,9 @@ if (!token) {
     window.location.href = "/login";
 }
 
-const getProfile = async () => {
+const getProfile = async (token) => {
     try {
-        const { data } = await axios.get("/data", {
+        const { data } = await axios.get("/users/data", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -19,4 +19,4 @@ const getProfile = async () => {
     }
 };
 
-getProfile();
+getProfile(token);
