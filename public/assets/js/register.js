@@ -43,7 +43,7 @@ formRegister.addEventListener("submit", async (e) => {
         );
 
         localStorage.setItem("token", data.msg.token);
-        window.location.href = "/data";
+        window.location.href = "/users/data";
     } catch (error) {
         console.error(error);
         return alert(error.response.data.msg);
