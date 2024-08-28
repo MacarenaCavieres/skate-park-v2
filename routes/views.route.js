@@ -20,6 +20,10 @@ router.get("/login", (req, res) => {
 
 router.post("/login", skatersController.postLogin);
 
+router.get("/data", (req, res) => {
+    res.render("data");
+});
+
 router.get("/admin", (req, res) => {
     res.render("admin");
 });
