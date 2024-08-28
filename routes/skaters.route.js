@@ -4,8 +4,8 @@ import { validateToken } from "../middlewares/token.middleware.js";
 
 const router = Router();
 
-router.post("/register/skater", skatersController.postOneSkater);
-// router.post("/login", Usercontrollers.login);
+router.post("/register/skater", skatersController.register);
+router.post("/login", skatersController.postLogin);
 router.get("/data", validateToken, skatersController.getDataSkater);
 // router.get("/proyecto", verifyToken, Usercontrollers.profile);
 
