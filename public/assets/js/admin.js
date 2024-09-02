@@ -1,5 +1,6 @@
 const token = localStorage.getItem("token");
 const username = document.querySelector("#username");
+const inputState = document.querySelector("#inputState");
 
 if (!token) {
     alert("Inicie sesión");
@@ -24,15 +25,8 @@ const getAdmin = async () => {
     }
 };
 
-// const getSkaters = async()=>{
-//     try {
+// inputState.addEventListener("change", async () => {
 
-//         const {data} = await axios.get("/admin")
-//         conso
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+// });
 
 getAdmin();
