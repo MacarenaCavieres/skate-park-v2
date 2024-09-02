@@ -23,3 +23,10 @@ export const validateToken = (req, res, next) => {
         return res.status(400).json({ ok: false, msg: "Token no válido" });
     }
 };
+
+export const verifyAdmin = (req, res, next) => {
+    if (req.type_user === 1) {
+        return next();
+    }
+    return res.status(403).json({ ok: false, error: "No autorizado" });
+};

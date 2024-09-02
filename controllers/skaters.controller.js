@@ -1,7 +1,6 @@
 import bcryptjs from "bcryptjs";
 import path from "path";
 import jwt from "jsonwebtoken";
-// import { generateToken } from "../utils/config.util.js";
 import { Skater } from "../models/skaters.model.js";
 import { handleErrors } from "../database/errors.db.js";
 

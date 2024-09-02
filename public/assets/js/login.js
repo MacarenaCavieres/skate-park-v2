@@ -12,7 +12,9 @@ formLogin.addEventListener("submit", async (e) => {
         });
 
         localStorage.setItem("token", data.token);
-        window.location.href = "/data";
+        if (data.tipo_usuario === 2) {
+            window.location.href = "/data";
+        }
     } catch (error) {
         console.log(error);
         return alert(error.response.data.msg);

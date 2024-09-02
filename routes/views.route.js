@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { skatersController } from "../controllers/skaters.controller.js";
-import { validateToken } from "../middlewares/token.middleware.js";
+// import { verifyAdmin } from "../middlewares/token.middleware.js";
 
 const router = Router();
 
@@ -13,8 +13,6 @@ router.get("/register", (req, res) => {
 router.get("/login", (req, res) => {
     res.render("login");
 });
-
-// router.post("/login", skatersController.postLogin);
 
 router.get("/data", (req, res) => {
     res.render("data");
