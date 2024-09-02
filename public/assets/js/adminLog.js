@@ -12,8 +12,11 @@ formAdmin.addEventListener("submit", async (e) => {
         });
 
         localStorage.setItem("token", data.token);
-        window.location.href = "/admin";
+        if (data.tipo_usuario === 1) {
+            window.location.href = "/admin";
+        }
     } catch (error) {
         console.log(error);
+        return alert(error.response.data.msg);
     }
 });

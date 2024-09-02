@@ -79,11 +79,13 @@ td div {
     color: var(--color-tertiary);
 }
 
-.home__td-img {
+.home__td-img,
+.admin__td-img {
     width: 200px;
 }
 
-.home__img {
+.home__img,
+.admin__img {
     width: 50%;
     height: auto;
 }

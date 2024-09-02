@@ -3,6 +3,7 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { Admin } from "../models/admin.model.js";
 import { handleErrors } from "../database/errors.db.js";
+import { Skater } from "../models/skaters.model.js";
 
 const secretKey = process.env.secretKey;
 
@@ -45,9 +46,19 @@ const postLogin = async (req, res) => {
 const getOneAdmin = async (req, res) => {
     try {
         const data = await Admin.findOne(req.email);
-        console.log(data);
 
-        return res.send("ok");
+        return res.json({ ok: true, data });
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
+const getSkaters = async (req, res) => {
+    try {
+        const data = await Skater.getAll();
+        return res.render("admin", { data });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
@@ -58,4 +69,5 @@ const getOneAdmin = async (req, res) => {
 export const adminController = {
     postLogin,
     getOneAdmin,
+    getSkaters,
 };

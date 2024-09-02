@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { adminController } from "../controllers/admin.controller.js";
-import { verifyAdmin } from "../middlewares/token.middleware.js";
+import { validateToken, verifyAdmin } from "../middlewares/token.middleware.js";
 
 const router = Router();
 
@@ -9,6 +9,6 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/auth", adminController.postLogin);
-router.get("/admin", verifyAdmin, adminController.getOneAdmin);
+router.get("/data", validateToken, verifyAdmin, adminController.getOneAdmin);
 
 export default router;

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { skatersController } from "../controllers/skaters.controller.js";
+import { adminController } from "../controllers/admin.controller.js";
 // import { verifyAdmin } from "../middlewares/token.middleware.js";
 
 const router = Router();
@@ -18,8 +19,6 @@ router.get("/data", (req, res) => {
     res.render("data");
 });
 
-router.get("/admin", (req, res) => {
-    res.render("admin");
-});
+router.get("/admin", adminController.getSkaters);
 
 export default router;
