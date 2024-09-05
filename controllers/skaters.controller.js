@@ -145,8 +145,25 @@ const deleteOneSkater = async (req, res) => {
 
         return res.json({ ok: true, msg: "Registro eliminado con éxito" });
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ ok: false, msg: "Error de servidor" });
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
+const putOneState = async (req, res) => {
+    const { id, state } = req.body;
+    if (!id || !state) return res.json({ ok: false, msg: "Faltan campos" });
+
+    console.log(id, state);
+    try {
+        const data = await Skater.putState(id, state);
+
+        return res.json({ ok: true, msg: "Registro actualizado con exito", data });
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
     }
 };
 
@@ -157,4 +174,5 @@ export const skatersController = {
     getDataSkater,
     putOneSkater,
     deleteOneSkater,
+    putOneState,
 };
