@@ -153,13 +153,12 @@ const deleteOneSkater = async (req, res) => {
 
 const putOneState = async (req, res) => {
     const { id, state } = req.body;
-    if (!id || !state) return res.json({ ok: false, msg: "Faltan campos" });
+    if (!id) return res.json({ ok: false, msg: "Faltan campos" });
 
-    console.log(id, state);
     try {
         const data = await Skater.putState(id, state);
 
-        return res.json({ ok: true, msg: "Registro actualizado con exito", data });
+        return res.json({ ok: true, msg: "Registro actualizado con éxito", data });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);

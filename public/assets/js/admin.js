@@ -36,7 +36,12 @@ stateSkater.forEach((item) => {
             state,
         };
 
-        await axios.put("/state", data);
+        const response = await axios.put("/users/state", data);
+
+        if (!response.data.ok)
+            return alert("Ups... hubo un problema en actualizar el estado, intentelo más tarde");
+
+        return alert(response.data.msg + " Skater: " + response.data.data.nombre);
     });
 });
 
