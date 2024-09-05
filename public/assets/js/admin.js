@@ -1,6 +1,7 @@
 const token = localStorage.getItem("token");
 const username = document.querySelector("#username");
 const inputState = document.querySelector("#inputState");
+const stateSkater = document.querySelectorAll(".check");
 
 if (!token) {
     alert("Inicie sesión");
@@ -25,8 +26,18 @@ const getAdmin = async () => {
     }
 };
 
-// inputState.addEventListener("change", async () => {
+stateSkater.forEach((item) => {
+    item.addEventListener("click", async (e) => {
+        const state = e.target.checked;
+        const id = e.target.id;
 
-// });
+        const data = {
+            id,
+            state,
+        };
+
+        await axios.put("/state", data);
+    });
+});
 
 getAdmin();
