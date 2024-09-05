@@ -66,6 +66,14 @@ const getSkaters = async (req, res) => {
     }
 };
 
+// const getDataSkaters = async(req,res)=>{
+//     try {
+
+//     } catch (error) {
+
+//     }
+// }
+
 export const adminController = {
     postLogin,
     getOneAdmin,
