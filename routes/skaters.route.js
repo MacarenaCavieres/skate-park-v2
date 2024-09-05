@@ -9,5 +9,6 @@ router.post("/login", skatersController.postLogin);
 router.get("/data", validateToken, skatersController.getDataSkater);
 router.put("/skater/update", skatersController.putOneSkater);
 router.delete("/skater/delete", skatersController.deleteOneSkater);
+router.put("/state", skatersController.putOneState);
 
 export default router;
