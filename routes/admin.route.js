@@ -10,5 +10,6 @@ router.get("/login", (req, res) => {
 
 router.post("/auth", adminController.postLogin);
 router.get("/data", validateToken, verifyAdmin, adminController.getOneAdmin);
+// router.get("/data/skaters", validateToken, verifyAdmin, adminController.getSkaters);
 
 export default router;
