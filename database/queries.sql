@@ -1,7 +1,14 @@
-drop table if exists skaters;
+DROP TABLE IF EXISTS skaters;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS roles;
+
+CREATE TABLE roles (
+    RID SERIAL PRIMARY KEY,
+    NAME VARCHAR(50) NOT NULL UNIQUE CHECK (NAME IN ('ADMIN', 'SKATER'))
+);
 
 CREATE TABLE skaters (
-    id SERIAL, 
+    id SERIAL PRIMARY KEY, 
     email VARCHAR(50) NOT NULL, 
     nombre VARCHAR(25) NOT NULL, 
     password VARCHAR(100) NOT NULL, 
@@ -9,5 +16,21 @@ CREATE TABLE skaters (
 	specialty VARCHAR(50) NOT NULL, 
     photo VARCHAR(255) NOT NULL, 
     state BOOLEAN default false,
-	type_user INT default 2
+	type_user INT default 2,
+	FOREIGN KEY (type_user) REFERENCES roles(RID) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE admin (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	type_user INT DEFAULT 1,
+	FOREIGN KEY (type_user) REFERENCES roles(RID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO ROLES (NAME) VALUES ('ADMIN');
+INSERT INTO ROLES (NAME) VALUES ('SKATER');
+
+INSERT INTO admin (username, email, password) values
+('admin', 'admin@skate.com', '1234');
