@@ -10,7 +10,9 @@ const postOne = async (email, nombre, password, years_experience, specialty, pho
 };
 
 const getAll = async () => {
-    const { rows } = await pool.query("select * from skaters");
+    const { rows } = await pool.query(
+        "select id,email,nombre,years_experience,specialty,photo,state,type_user from skaters"
+    );
     return rows;
 };
 
@@ -43,10 +45,21 @@ const deleteOne = async (id) => {
     return rows[0];
 };
 
+const putState = async (id, state) => {
+    const query = {
+        text: "update skaters set state = $2 where id = $1 returning id, email, nombre, state",
+        values: [id, state],
+    };
+
+    const { rows } = await pool.query(query);
+    return rows[0];
+};
+
 export const Skater = {
     postOne,
     getAll,
     findOne,
     putOne,
     deleteOne,
+    putState,
 };
