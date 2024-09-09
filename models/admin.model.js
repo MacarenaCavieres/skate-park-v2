@@ -2,7 +2,7 @@ import { pool } from "../database/connection.db.js";
 
 const postOne = async (username, email, password) => {
     const query = {
-        text: "INSERT INTO admin (username, email, password) values ($1,$2,$3) returning *;",
+        text: "INSERT INTO admin (username, email, password) values ($1,$2,$3) returning username, email;",
         values: [username, email.password],
     };
 
