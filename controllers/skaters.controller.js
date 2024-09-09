@@ -46,12 +46,6 @@ const register = async (req, res) => {
 
         const data = await Skater.postOne(email, nombre, hashPassword, years_experience, specialty, name);
 
-        // return res.status(201).json({
-        //     ok: true,
-        //     asviso: "Usuario creado con éxito",
-        //     data,
-        // });
-
         return res.render("regSuccessful", { data });
     } catch (error) {
         console.log(error);
