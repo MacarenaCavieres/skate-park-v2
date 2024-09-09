@@ -7,6 +7,30 @@ import { Skater } from "../models/skaters.model.js";
 
 const secretKey = process.env.secretKey;
 
+const registerAdmin = async (req, res) => {
+    const { username, email, password, rept_password } = req.body;
+    if (!username || !email || !password || !rept_password)
+        return res.status(409).json({ ok: false, msg: "Faltan campos" });
+
+    if (password !== rept_password)
+        return res.status(400).json({ ok: false, msg: "Contraseñas no coinciden" });
+
+    try {
+        const admin = await Admin.findOne(email);
+        if (admin) return res.status(400).json({ ok: false, msg: "Administrador ya registrado" });
+
+        const salt = await bcryptjs.genSalt(10);
+        const hashPassword = await bcryptjs.hash(password, salt);
+
+        const data = await Admin.postOne(username, email, hashPassword);
+        return res.status(201).json({ ok: true, msg: data });
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
 const postLogin = async (req, res) => {
     const { email, password } = req.body;
 
@@ -66,15 +90,8 @@ const getSkaters = async (req, res) => {
     }
 };
 
-// const getDataSkaters = async(req,res)=>{
-//     try {
-
-//     } catch (error) {
-
-//     }
-// }
-
 export const adminController = {
+    registerAdmin,
     postLogin,
     getOneAdmin,
     getSkaters,
