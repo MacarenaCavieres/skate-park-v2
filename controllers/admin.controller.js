@@ -82,7 +82,8 @@ const getOneAdmin = async (req, res) => {
 const getSkaters = async (req, res) => {
     try {
         const data = await Skater.getAll();
-        return res.render("admin", { data });
+        const dataAdmin = await Admin.getAll();
+        return res.render("admin", { data, dataAdmin });
     } catch (error) {
         console.log(error);
         const { code, msg } = handleErrors(error);
