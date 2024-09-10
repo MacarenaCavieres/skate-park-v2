@@ -20,7 +20,17 @@ const findOne = async (email) => {
     return rows[0];
 };
 
+const getAll = async () => {
+    const query = {
+        text: "select id,username,email from admin;",
+    };
+
+    const { rows } = await pool.query(query);
+    return rows;
+};
+
 export const Admin = {
     postOne,
     findOne,
+    getAll,
 };
