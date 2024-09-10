@@ -4,6 +4,11 @@ const inputState = document.querySelector("#inputState");
 const stateSkater = document.querySelectorAll(".check");
 const registerAdmin = document.querySelector("#registerAdmin");
 
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(
+    (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+);
+
 if (!token) {
     alert("Inicie sesión");
     window.location.href = "/admin/login";
