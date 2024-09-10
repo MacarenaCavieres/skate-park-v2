@@ -2,6 +2,7 @@ const token = localStorage.getItem("token");
 const username = document.querySelector("#username");
 const inputState = document.querySelector("#inputState");
 const stateSkater = document.querySelectorAll(".check");
+const registerAdmin = document.querySelector("#registerAdmin");
 
 if (!token) {
     alert("Inicie sesión");
@@ -43,6 +44,39 @@ stateSkater.forEach((item) => {
 
         return alert(response.data.msg + " Skater: " + response.data.data.nombre);
     });
+});
+
+registerAdmin.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const username = registerAdmin.username.value;
+    const email = registerAdmin.email.value;
+    const password = registerAdmin.password.value;
+    const rept_password = registerAdmin.rept_password.value;
+
+    if (!username.trim() || !email.trim() || !password || !rept_password)
+        return alert("Debe ingresar todos los datos");
+
+    if (password !== rept_password) return alert("Contraseñas no coinciden");
+
+    const data = {
+        username,
+        email,
+        password,
+        rept_password,
+    };
+    try {
+        const response = await axios.post("/admin/register", data);
+
+        if (response.ok === false) return alert("Ups... algo salió mal, intentelo mas tarde");
+
+        window.location.reload();
+
+        return alert("Administrador creado exitosamente");
+    } catch (error) {
+        console.error(error);
+        return alert(error.response.data.msg);
+    }
 });
 
 getAdmin();
