@@ -29,8 +29,30 @@ const getAll = async () => {
     return rows;
 };
 
+const updateOne = async (username, email, password, id) => {
+    const query = {
+        text: "update admin set username = $1, email = $2, password = $3 where id = $4 returning username,email,id",
+        values: [username, email, password, id],
+    };
+
+    const { rows } = await pool.query(query);
+    return rows[0];
+};
+
+const deleteOne = async (id) => {
+    const query = {
+        text: "delete admin where id = $1 returning *",
+        values: [id],
+    };
+
+    const { rows } = await pool.query(query);
+    return rows[0];
+};
+
 export const Admin = {
     postOne,
     findOne,
     getAll,
+    updateOne,
+    deleteOne,
 };

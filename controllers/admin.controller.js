@@ -40,8 +40,8 @@ const postLogin = async (req, res) => {
         const data = await Admin.findOne(email);
         if (!data) return res.status(409).json({ ok: false, msg: "Administrador no encontrado" });
 
-        // const match = await bcryptjs.compare(password, data.password);
-        // if (!match) return res.status(400).json({ ok: false, msg: "Usuario o contraseña incorrecto" });
+        const match = await bcryptjs.compare(password, data.password);
+        if (!match) return res.status(400).json({ ok: false, msg: "Usuario o contraseña incorrecto" });
 
         const token = jwt.sign(
             {
@@ -91,9 +91,51 @@ const getSkaters = async (req, res) => {
     }
 };
 
+const updateOneAdmin = async (req, res) => {
+    const { username, email, password, rept_password, id } = req.body;
+    if (!username || !email || !password || !rept_password || !id)
+        return res.status(409).json({ ok: false, msg: "Faltan datos" });
+
+    try {
+        const admin = await Admin.findOne(email);
+        if (!admin) return res.status(409).json({ ok: false, msg: "Admin no encontrado" });
+
+        const salt = await bcryptjs.genSalt(10);
+        const hashPassword = await bcryptjs.hash(password, salt);
+
+        const data = await Admin.updateOne(username, email, hashPassword, id);
+
+        res.json({ ok: true, data });
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
+const deleteOneAdmin = async (req, res) => {
+    const { id, password } = req.body;
+    if (!id || !password) return res.status(409).json({ ok: false, msg: "Faltan datos" });
+
+    try {
+        const match = await bcryptjs.compare(password, data.password);
+        if (!match) return res.status(400).json({ ok: false, msg: "Usuario o contraseña incorrecto" });
+
+        const data = await Admin.deleteOne(id);
+
+        return res.json({ ok: true, data });
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
 export const adminController = {
     registerAdmin,
     postLogin,
     getOneAdmin,
     getSkaters,
+    updateOneAdmin,
+    deleteOneAdmin,
 };
