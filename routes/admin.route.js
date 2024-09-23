@@ -12,4 +12,6 @@ router.post("/auth", adminController.postLogin);
 router.get("/data", validateToken, verifyAdmin, adminController.getOneAdmin);
 router.post("/register", adminController.registerAdmin);
 
+router.get("/id/:id", adminController.getAdminById);
+
 export default router;
