@@ -49,10 +49,20 @@ const deleteOne = async (id) => {
     return rows[0];
 };
 
+const findById = async (id) => {
+    const query = {
+        text: "select username, email from admin where id = $1",
+        values: [id],
+    };
+    const { rows } = await pool.query(query);
+    return rows[0];
+};
+
 export const Admin = {
     postOne,
     findOne,
     getAll,
     updateOne,
     deleteOne,
+    findById,
 };

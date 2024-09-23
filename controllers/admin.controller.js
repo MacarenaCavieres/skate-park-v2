@@ -131,6 +131,19 @@ const deleteOneAdmin = async (req, res) => {
     }
 };
 
+const getAdminById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const data = await Admin.findById(id);
+
+        return res.json({ ok: true, data });
+    } catch (error) {
+        console.log(error);
+        const { code, msg } = handleErrors(error);
+        return res.status(code).json({ ok: false, msg });
+    }
+};
+
 export const adminController = {
     registerAdmin,
     postLogin,
@@ -138,4 +151,5 @@ export const adminController = {
     getSkaters,
     updateOneAdmin,
     deleteOneAdmin,
+    getAdminById,
 };
