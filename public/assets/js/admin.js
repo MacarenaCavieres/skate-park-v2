@@ -6,6 +6,7 @@ const registerAdmin = document.querySelector("#registerAdmin");
 const bntModal = document.querySelectorAll(".btn-update");
 const btnDelete = document.querySelectorAll(".btn-delete");
 const myModal = new bootstrap.Modal(document.getElementById("myModal"));
+const btnUpdate = document.querySelector("#btnUpdate");
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(
@@ -92,26 +93,76 @@ const infoAdmin = async (e) => {
     try {
         const { data } = await axios.get(`/admin/id/${idAdmin}`);
         myModal.show();
-        console.log(data);
 
         let username = updateForm.username;
         let email = updateForm.email;
 
         username.value = data.data.username;
         email.value = data.data.email;
+
+        updateForm.dataset.id = idAdmin;
     } catch (error) {
         console.error(error);
         return alert("Algo salió mal");
     }
-
-    // const updateForm = document.querySelector("#updateForm");
-
-    // const username = updateForm.username.value;
-    // const email = updateForm.email.value;
-    // const password = updateForm.password.value;
-    // const rept_password = updateForm.rept_password.value;
-    // console.log(username, email, password, rept_password);
 };
+
+btnUpdate.addEventListener("click", async () => {
+    const updateForm = document.querySelector("#updateForm");
+    const username = updateForm.username.value;
+    const email = updateForm.email.value;
+    const password = updateForm.password.value;
+    const rept_password = updateForm.rept_password.value;
+    const idAdmin = +updateForm.dataset.id;
+
+    if (!username || !email || !password || !rept_password) return alert("Faltan datos por completar");
+
+    if (password !== rept_password) return alert("Contraseñas no coinciden");
+
+    const data = {
+        username,
+        email,
+        password,
+        rept_password,
+        id: idAdmin,
+    };
+    try {
+        const response = await axios.put("/admin/update", data);
+        if (response.status === 200) {
+            alert("Administrador actualizado con éxito");
+            myModal.hide();
+            window.location.reload();
+        }
+    } catch (error) {
+        console.error(error);
+        return alert("Algo salió mal");
+    }
+});
+
+const deleteAdmin = async (e) => {
+    const idAdmin = e.target.id;
+
+    const ratify = confirm("Desea eliminar este administrador?");
+
+    if (!ratify) return;
+
+    const data = {
+        id: idAdmin,
+    };
+
+    try {
+        const response = await axios.delete("/admin/delete", { data });
+        if (response.status === 200) {
+            alert("Administrador eliminado con éxito");
+            window.location.reload();
+        }
+    } catch (error) {
+        console.error(error);
+        return alert("Algo salió mal");
+    }
+};
+
+btnDelete.forEach((btn) => btn.addEventListener("click", deleteAdmin));
 
 bntModal.forEach((btn) => btn.addEventListener("click", infoAdmin));
 
