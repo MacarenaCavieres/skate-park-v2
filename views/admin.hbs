@@ -63,7 +63,7 @@
                     <input class="form-control m-auto" type="password" name="rept_password" required />
                 </div>
             </div>
-            <button class="btn register__btn mb-3" type="submit">Registrar admin</button>
+            <button class="btn register__btn my-3" type="submit">Registrar admin</button>
         </form>
     </div>
 
@@ -88,27 +88,87 @@
                             <td>{{username}}</td>
                             <td>{{email}}</td>
                             <td><button
-                                    class="btn admin__btn-update"
-                                    id="adminUpdate{{id}}"
+                                    class="btn admin__btn-update btn-update fa-regular fa-pen-to-square"
                                     type="button"
+                                    id="{{id}}"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="bottom"
                                     data-bs-title="Actualizar"
-                                ><i class="fa-regular fa-pen-to-square"></i></button>
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                ></button>
                             </td>
                             <td><button
-                                    class="btn admin__btn-delete"
+                                    class="btn admin__btn-delete btn-delete fa-regular fa-trash-can"
                                     type="button"
-                                    id="adminDelete{{id}}"
+                                    id="{{id}}"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="bottom"
                                     data-bs-title="Eliminar"
-                                ><i class="fa-regular fa-trash-can"></i></button></td>
+                                ></button></td>
                         </tr>
                     {{/each}}
                 </tbody>
             </table>
         {{/if}}
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-2">Actualizar administrador</h2>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateForm">
+                        <div class="form-group row">
+                            <div class="form-group col-12 my-3">
+                                <label for="username" class="labelForm">Username</label>
+                                <input
+                                    class="form-control input-update"
+                                    type="text"
+                                    name="username"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group col-12 my-3">
+                                <label for="email" class="labelForm">Email</label>
+                                <input class="form-control input-update" type="email" name="email" required />
+                            </div>
+                            <div class="form-group col-12 my-3">
+                                <label for="password" class="labelForm">Contraseña</label>
+                                <input
+                                    class="form-control input-update"
+                                    type="password"
+                                    name="password"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group col-12 my-3">
+                                <label for="rept_password" class="labelForm">Repita la contraseña</label>
+                                <input
+                                    class="form-control input-update"
+                                    type="password"
+                                    name="rept_password"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn__update" id="btn">Actualizar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </section>
