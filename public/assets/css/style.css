@@ -60,7 +60,8 @@ td div {
 .login__btn,
 .data__btn-update,
 .data__btn-delete,
-.data__btn-logout {
+.data__btn-logout,
+.btn__update {
     background-color: var(--color-quaternary);
 }
 .register__btn:hover,
@@ -92,4 +93,26 @@ td div {
 
 input {
     text-align: center;
+}
+
+/* modal */
+
+.modal-title {
+    color: var(--color-primary);
+}
+
+.modal-body {
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.labelForm {
+    text-align: left !important;
+    display: block;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+
+.input-update {
+    text-align: left !important;
 }
