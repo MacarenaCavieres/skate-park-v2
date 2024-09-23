@@ -41,7 +41,7 @@ const updateOne = async (username, email, password, id) => {
 
 const deleteOne = async (id) => {
     const query = {
-        text: "delete admin where id = $1 returning *",
+        text: "delete from admin where id = $1 returning *",
         values: [id],
     };
 

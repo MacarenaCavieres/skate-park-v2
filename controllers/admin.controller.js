@@ -93,11 +93,12 @@ const getSkaters = async (req, res) => {
 
 const updateOneAdmin = async (req, res) => {
     const { username, email, password, rept_password, id } = req.body;
+    console.log(username, email, password, rept_password, id);
     if (!username || !email || !password || !rept_password || !id)
         return res.status(409).json({ ok: false, msg: "Faltan datos" });
 
     try {
-        const admin = await Admin.findOne(email);
+        const admin = await Admin.findById(id);
         if (!admin) return res.status(409).json({ ok: false, msg: "Admin no encontrado" });
 
         const salt = await bcryptjs.genSalt(10);
@@ -114,13 +115,10 @@ const updateOneAdmin = async (req, res) => {
 };
 
 const deleteOneAdmin = async (req, res) => {
-    const { id, password } = req.body;
-    if (!id || !password) return res.status(409).json({ ok: false, msg: "Faltan datos" });
+    const { id } = req.body;
+    if (!id) return res.status(409).json({ ok: false, msg: "Faltan datos" });
 
     try {
-        const match = await bcryptjs.compare(password, data.password);
-        if (!match) return res.status(400).json({ ok: false, msg: "Usuario o contraseña incorrecto" });
-
         const data = await Admin.deleteOne(id);
 
         return res.json({ ok: true, data });
