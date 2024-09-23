@@ -11,6 +11,8 @@ router.get("/login", (req, res) => {
 router.post("/auth", adminController.postLogin);
 router.get("/data", validateToken, verifyAdmin, adminController.getOneAdmin);
 router.post("/register", adminController.registerAdmin);
+router.put("/update", adminController.updateOneAdmin);
+router.delete("/delete", adminController.deleteOneAdmin);
 
 router.get("/id/:id", adminController.getAdminById);
 
