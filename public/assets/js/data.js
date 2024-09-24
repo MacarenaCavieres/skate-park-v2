@@ -12,6 +12,7 @@ if (!token) {
 }
 
 logout.addEventListener("click", () => {
+    localStorage.removeItem("token");
     window.location.href = "/login";
 });
 
@@ -92,6 +93,7 @@ deleteData.addEventListener("click", async () => {
         });
 
         alert("Cuenta eliminada con éxito");
+        localStorage.removeItem("token");
         window.location.href = "/";
     } catch (error) {
         console.log(error);

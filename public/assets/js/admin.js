@@ -34,6 +34,7 @@ const getAdmin = async () => {
         username.textContent = data.data.username;
     } catch (error) {
         console.error(error);
+        return (window.location.href = "/admin/login");
     }
 };
 
