@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap");
+
 :root {
     --color-primary: #004445;
     --color-secondary: #2c786c;
@@ -22,6 +24,10 @@ body {
     text-align: center;
 }
 
+.main__body {
+    min-height: 100vh;
+}
+
 h1 {
     font-style: italic;
 }
@@ -34,7 +40,13 @@ h1 {
 .admin__table tr {
     background-color: var(--color-tertiary);
     color: var(--color-primary);
+    text-align: center !important;
 }
+
+.admin__skaters-table {
+    overflow-x: auto;
+}
+
 a {
     color: var(--color-quaternary);
     text-decoration: none;
@@ -95,6 +107,17 @@ input {
     text-align: center;
 }
 
+@media (max-width: 576px) {
+    .form-control-file {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .input__login {
+        width: 75% !important;
+    }
+}
+
 /* modal */
 
 .modal-title {
@@ -115,4 +138,13 @@ input {
 
 .input-update {
     text-align: left !important;
+}
+
+footer {
+    background-color: var(--color-quaternary);
+    color: var(--color-primary);
+    height: 100px;
+    padding-top: 50px;
+    font-family: "Playpen Sans", cursive;
+    font-weight: 800;
 }
