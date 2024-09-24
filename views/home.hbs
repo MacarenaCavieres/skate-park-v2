@@ -7,41 +7,41 @@
     <section class="container">
         <div class="table-responsive">
             {{#if data}}
-            <table class="table table-hover home__table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Foto</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Años de experiencia</th>
-                        <th scope="col">Especialidad</th>
-                        <th scope="col">Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {{#each data}}
+                <table class="table table-hover home__table mb-5">
+                    <thead>
                         <tr>
-                            <th scope="row">{{id}}</th>
-                            <td class="home__td-img"><img
-                                    src="/assets/imgs/{{photo}}"
-                                    alt="{{nombre}}"
-                                    class="home__img"
-                                /></td>
-                            <td>{{nombre}}</td>
-                            <td>{{years_experience}}</td>
-                            <td>{{specialty}}</td>
-                            {{#if state}}
-                                <td class="text-success font-weight-bold">Aprobado</td>
-                            {{else}}
-                                <td class="text-warning-emphasis font-weight-bold">En revisión</td>
-                            {{/if}}
+                            <th scope="col">#</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Años de experiencia</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Estado</th>
                         </tr>
+                    </thead>
+                    <tbody>
 
-                    {{/each}}
-                </tbody>
+                        {{#each data}}
+                            <tr>
+                                <th scope="row">{{id}}</th>
+                                <td class="home__td-img"><img
+                                        src="/assets/imgs/{{photo}}"
+                                        alt="{{nombre}}"
+                                        class="home__img"
+                                    /></td>
+                                <td>{{nombre}}</td>
+                                <td>{{years_experience}}</td>
+                                <td>{{specialty}}</td>
+                                {{#if state}}
+                                    <td class="text-success font-weight-bold">Aprobado</td>
+                                {{else}}
+                                    <td class="text-warning-emphasis font-weight-bold">En revisión</td>
+                                {{/if}}
+                            </tr>
+
+                        {{/each}}
+                    </tbody>
+                </table>
             {{/if}}
-            </table>
         </div>
     </section>
     <a href="/login">Iniciar sesión</a>
