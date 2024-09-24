@@ -19,6 +19,7 @@ if (!token) {
 }
 
 logout.addEventListener("click", () => {
+    localStorage.removeItem("token");
     window.location.href = "/admin/login";
 });
 
