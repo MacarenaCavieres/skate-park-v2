@@ -7,39 +7,41 @@
 
     {{#if data}}
         <h2>Lista de Skaters</h2>
-        <table class="table w-75 admin__table m-auto">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Foto</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Años de experiencia</th>
-                    <th scope="col">Especialidad</th>
-                    <th scope="col">Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each data}}
+        <div class="admin__skaters-table">
+            <table class="table w-75 admin__table m-auto">
+                <thead>
                     <tr>
-                        <th scope="row">{{id}}</th>
-                        <td class="admin__td-img"><img
-                                class="admin__img"
-                                src="./assets/imgs/{{photo}}"
-                                alt="nombre"
-                            /></td>
-                        <td>{{nombre}}</td>
-                        <td>{{years_experience}}</td>
-                        <td>{{specialty}}</td>
-                        {{#if state}}
-                            <td><input type="checkbox" class="check" checked id="{{id}}" /></td>
-                        {{else}}
-                            <td><input type="checkbox" class="check" id="{{id}}" /></td>
-                        {{/if}}
-
+                        <th scope="col">#</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Años de experiencia</th>
+                        <th scope="col">Especialidad</th>
+                        <th scope="col">Estado</th>
                     </tr>
-                {{/each}}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                        <tr>
+                            <th scope="row">{{id}}</th>
+                            <td class="admin__td-img"><img
+                                    class="admin__img"
+                                    src="./assets/imgs/{{photo}}"
+                                    alt="nombre"
+                                /></td>
+                            <td>{{nombre}}</td>
+                            <td>{{years_experience}}</td>
+                            <td>{{specialty}}</td>
+                            {{#if state}}
+                                <td><input type="checkbox" class="check" checked id="{{id}}" /></td>
+                            {{else}}
+                                <td><input type="checkbox" class="check" id="{{id}}" /></td>
+                            {{/if}}
+
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     {{/if}}
 
     <div class="my-5 pt-3">
@@ -70,46 +72,48 @@
     <div>
         <h2>Lista de administradores</h2>
         {{#if dataAdmin}}
-            <table class="table w-50 admin__table m-auto">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Email</th>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each dataAdmin}}
+            <div class="admin__skaters-table">
+                <table class="table w-50 admin__table m-auto my-5">
+                    <thead>
                         <tr>
-                            <th scope="row">{{id}}</th>
-                            <td>{{username}}</td>
-                            <td>{{email}}</td>
-                            <td><button
-                                    class="btn admin__btn-update btn-update fa-regular fa-pen-to-square"
-                                    type="button"
-                                    id="{{id}}"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom"
-                                    data-bs-title="Actualizar"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                ></button>
-                            </td>
-                            <td><button
-                                    class="btn admin__btn-delete btn-delete fa-regular fa-trash-can"
-                                    type="button"
-                                    id="{{id}}"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="bottom"
-                                    data-bs-title="Eliminar"
-                                ></button></td>
+                            <th scope="col">#</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <td scope="col"></td>
+                            <td scope="col"></td>
+
                         </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {{#each dataAdmin}}
+                            <tr>
+                                <th scope="row">{{id}}</th>
+                                <td>{{username}}</td>
+                                <td>{{email}}</td>
+                                <td><button
+                                        class="btn admin__btn-update btn-update fa-regular fa-pen-to-square"
+                                        type="button"
+                                        id="{{id}}"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        data-bs-title="Actualizar"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"
+                                    ></button>
+                                </td>
+                                <td><button
+                                        class="btn admin__btn-delete btn-delete fa-regular fa-trash-can"
+                                        type="button"
+                                        id="{{id}}"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        data-bs-title="Eliminar"
+                                    ></button></td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         {{/if}}
     </div>
 
