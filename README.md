@@ -99,7 +99,7 @@ skaters-app/
 ├── utils/               # Configuraciones adicionales (subida de archivos, etc.)
 ├── views/               # Plantillas Handlebars
 ├── .env                 # Variables de entorno (ignorado por Git)
-├── index.js            # Punto de entrada de la aplicación
+├── index.js             # Punto de entrada de la aplicación
 └── README.md            # Este archivo
 ```
 
